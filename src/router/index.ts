@@ -51,7 +51,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const loggedUser = JSON.parse(localStorage.getItem('user-info') || '{}')?.data?.token;
+    const loggedUser = JSON.parse(localStorage.getItem('user-info') || '{}')?.data?.access_token;
     const authRequired = to.matched.some((route) => route.meta.requiresAuth);
     // if (loggedUser && to.path === '/login' || to.path === '/') {
     if (loggedUser && to.path === '/login') {

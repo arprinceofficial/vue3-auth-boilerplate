@@ -24,7 +24,7 @@ const useAxios = axios.create({
 });
 
 useAxios.interceptors.request.use(config => {
-        const token = JSON.parse(localStorage.getItem('user-info')) ? JSON.parse(localStorage.getItem('user-info')).data.token : false;
+        const token = JSON.parse(localStorage.getItem('user-info')) ? JSON.parse(localStorage.getItem('user-info')).data.access_token : false;
         console.log('TOKEN =>', `Bearer ${token}`);
         if (token) {
             config.headers.common["Authorization"] = `Bearer ${token}`;

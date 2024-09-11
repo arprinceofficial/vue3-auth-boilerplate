@@ -20,7 +20,7 @@ const password_view_status = (status) => {
 }
 
 const form = reactive({
-    email: '',
+    loginInput: '',
     password: ''
 });
 
@@ -39,7 +39,7 @@ const submit = async () => {
             return;
         }
     } catch (error) {
-        unauthorizedError.value = error;
+        unauthorizedError.value = error.response.data.message;
     } finally {
         isLoading.value = false;
     }
@@ -58,14 +58,14 @@ const submit = async () => {
                     <form @submit.prevent="submit" class="mt-4 rounded-lg p-5 border-[2px] border-gray-200 ">
                         <h2 class="mt-2 text-center text-[22px] font-bold tracking-tight text-gray-900">Login</h2>
                         <div class="mt-10">
-                            <InputLabel for="email" value="User ID" class="text-[14px] mb-2" />
+                            <InputLabel for="loginInput" value="User ID" class="text-[14px] mb-2" />
                             <div class="relative mt-1">
                                 <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-4">
                                     <UserIcon class="h-4 w-4 text-gray-400" aria-hidden="true" />
                                 </div>
-                                <InputText id="email" type="text"
+                                <InputText id="loginInput" type="text"
                                     class="pl-[10px] h-[40px] sm:text-sm text-[14px] pl-[40px]"
-                                    v-model="form.email" required autofocus autocomplete="email"
+                                    v-model="form.loginInput" required autofocus autocomplete="loginInput"
                                     placeholder="i.e. 2324I245986789" />
                             </div>
                             <InputError class="mt-2" :message="unauthorizedError" />
